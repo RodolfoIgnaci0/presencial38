@@ -1,0 +1,21 @@
+<div class="col">
+  <p>bienvenido: <%= current_user.email %> </p>
+
+  <div class="row">
+    <% @tareas.each_slice(4) do |row| %>
+      <% row.each do |tarea| %>
+        <div class="col">
+          <div class="card">
+            <%= image_tag tarea.photo, class:'card-img-top' %>
+            <div class="body">
+              <h3> <%= tarea.nombre %> </h3>
+              <p> <%= tarea.descripcion %> </p>
+              <%= link_to "Completar", "#", class:'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="w-100"></div>
+    <% end %>
+  </div>
+</div>
