@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create(email: 'correo1@correo.com', password: 123456)
+user = User.create(email: 'correo3@correo.com', password: 123456)
 
-8.times do |i|
+9.times do |i|
   ele = Tarea.new(
                   nombre: Faker::Food.dish,
                   descripcion: Faker::Overwatch.quote,
