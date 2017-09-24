@@ -1,24 +1,22 @@
+
+
 <div class="col">
   <p>bienvenido: <%= current_user.email %> </p>
-
   <div class="row">
-    <% @tareas.each_slice(4) do |row| %>
-      <% row.each do |tarea| %>
-        <div class="col">
-          <div class="card">
-            <td><%= link_to (image_tag tarea.photo, class:'card-img-top'), tarea %></td>
-            <div class="body">
-              <h3> <%= tarea.nombre %> </h3>
-              <p> <%= tarea.descripcion %> </p>
-            </div>
-          </div>
+    <% @intento.each_slice(4) do |row| %>
+    <% row.each do |tarea| %>
+    <div class="col">
+      <div class="card">
+        <%= image_tag tarea.photo, class:'card-img-top' %>
+        <div class="body">
+          <h3> <%= tarea.nombre %> </h3>
+          <p> <%= tarea.descripcion %> </p>
+          <p> <%= tarea.hecho == false ? 'Incompleto' : 'Completo' %> </p>
         </div>
-      <% end %>
-      <div class="w-100"></div>
+      </div>
+    </div>
+    <% end %>
+    <div class="w-100"></div>
     <% end %>
   </div>
 </div>
-
-  <% @hecho.each do |i| %>
-    <%= i.hecho == false ? 'Incompleto' : 'Completo' %>
-  <% end %>

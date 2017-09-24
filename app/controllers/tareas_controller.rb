@@ -1,10 +1,17 @@
 class TareasController < ApplicationController
   before_action :authenticate_user!
+
+  def show
+    @tarea = Tarea.find(params[:id])
+  end
+
   def index
-    #muestra todas las tareas del usuario actual conectado
-    @tareas = Tarea.joins(accions: :user).where("users.id = ?", current_user.id)
-    #completar tareas
-    @hecho = Accion.joins(:tarea, :user).where("users.id = ?", current_user.id)
+    # muestra todas las tareas del usuario actual conectado
+    # @tareas = Tarea.joins(accions: :user).where("users.id = ?", current_user.id)
+
+    @intento = User.joins(:tareas, :accions)
+                   .select('tareas.nombre, tareas.descripcion, tareas.photo, accions.hecho')
+                   .distinct.where("users.id = ?", current_user.id)
 
     # lista total de tareas
     @listaTotal = Accion.where('user_id = ?', current_user.id).count
@@ -25,9 +32,6 @@ class TareasController < ApplicationController
     end
   end
 
-  def show
-    @tarea = Tarea.find(params[:id])
-  end
 
   private
   # Never trust parameters from the scary internet, only allow the white list through.
