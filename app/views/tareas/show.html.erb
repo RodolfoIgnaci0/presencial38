@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @tarea.nombre %>
+</p>
+<p>Tarea.params[:id].accions.where('completo = ?', true)</p>
+<p>    # lista total de tareas
+    @listaTotal = Accion.where('user_id = ?', current_user.id).count
+    # lista tareas completas
+    @listaCompletos = Accion.where(('user_id = current_user.id') && ('hecho = true')).count</p>
+<%= link_to 'Back', tareas_path %>
