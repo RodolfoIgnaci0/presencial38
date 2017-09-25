@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :tareas, only: [:index, :show] do
-    resources :accions
+    resources :accions, only: [:update]
   end
   devise_for :users
 
