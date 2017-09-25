@@ -1,12 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @tarea.nombre %>
-</p>
-<p>Tarea.params[:id].accions.where('completo = ?', true)</p>
-<p>    # lista total de tareas
-    @listaTotal = Accion.where('user_id = ?', current_user.id).count
-    # lista tareas completas
-    @listaCompletos = Accion.where(('user_id = current_user.id') && ('hecho = true')).count</p>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <%= image_tag @tarea.photo %>
+      <div class="body">
+        <strong>Actividad:</strong>
+        <%= @tarea.nombre %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h3>Usuarios que completaron actividad:</h3>
+
+<table class="table">
+  <th>Actividad</th>
+  <th>Usuarios</th>
+  <%  @users_completed.each do |i| %>
+  <tr>
+    <td> <%= i.nombre %> </p> </td>
+    <td> <%= i.email %> </p> </td>
+  </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Back', tareas_path %>
+
+
+  @listaCompletos = Accion.where(('user_id = current_user.id') && ('hecho = true')).count</p>
