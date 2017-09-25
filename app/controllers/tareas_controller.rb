@@ -6,24 +6,21 @@ class TareasController < ApplicationController
   def show
     @users_completed = User.joins(:tareas, :accions)
                    .select('users.email, tareas.nombre')
-                   .distinct.where("accions.hecho = ?", true)
+                   .distinct.where("accions.hecho = true and tareas.id = ?", @tarea.id)
   end
 
   def index
     # muestra todas las tareas del usuario actual conectado
     # @tareas = Tarea.joins(accions: :user).where("users.id = ?", current_user.id)
-
     @intento = User.joins(:tareas, :accions)
                    .select('tareas.id, tareas.nombre, tareas.descripcion, tareas.photo, accions.hecho')
                    .distinct.where("users.id = ?", current_user.id)
-
   end
 
   private
    def find_tarea
-      @tarea = Tarea.find(params[:id])
+     @tarea = Tarea.find(params[:id])
    end
-
    def listaTareas
      # lista total de tareas
      @listaTotal = Accion.where('user_id = ?', current_user.id).count

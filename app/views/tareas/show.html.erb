@@ -5,8 +5,8 @@
     <div class="card">
       <%= image_tag @tarea.photo %>
       <div class="body">
-        <strong>Actividad:</strong>
-        <%= @tarea.nombre %>
+        <p><strong>Actividad:</strong> <%= @tarea.nombre %></p>
+        <p><strong>Descripción:</strong> <%= @tarea.descripcion %></p>
       </div>
     </div>
   </div>
@@ -28,6 +28,3 @@
 </table>
 
 <%= link_to 'Back', tareas_path %>
-
-
-  @listaCompletos = Accion.where(('user_id = current_user.id') && ('hecho = true')).count</p>
