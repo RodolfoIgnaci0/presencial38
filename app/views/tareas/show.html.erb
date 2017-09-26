@@ -27,4 +27,19 @@
   <% end %>
 </table>
 
+<h3>Ranking:</h3>
+
+<table class="table">
+  <th>Lugar</th>
+  <th>Hora Termino de Actividad</th>
+  <th>Usuarios</th>
+  <%  @ranking.each.with_index(1) do |val, i| %>
+  <tr>
+    <td> <%= i %></td>
+    <td> <%= time_ago_in_words(val.created_at) %> </p> </td>
+    <td> <%= val.email %> </p> </td>
+  </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Back', tareas_path %>

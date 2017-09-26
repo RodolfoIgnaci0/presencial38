@@ -5,8 +5,13 @@ class TareasController < ApplicationController
 
   def show
     @users_completed = User.joins(:tareas, :accions)
-                   .select('users.email, tareas.nombre')
+                           .select('users.email, tareas.nombre')
+                           .distinct.where("accions.hecho = true and tareas.id = ?", @tarea.id)
+
+    @ranking = User.joins(:tareas, :accions)
+                   .select('users.email, tareas.nombre, accions.created_at')
                    .distinct.where("accions.hecho = true and tareas.id = ?", @tarea.id)
+                   .order('created_at ASC').limit(5)
   end
 
   def index
