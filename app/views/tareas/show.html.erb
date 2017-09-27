@@ -13,33 +13,37 @@
 </div>
 
 <hr>
-
 <h3>Usuarios que completaron actividad:</h3>
-
-<table class="table">
-  <th>Actividad</th>
-  <th>Usuarios</th>
-  <%  @users_completed.each do |i| %>
-  <tr>
-    <td> <%= i.nombre %> </p> </td>
-    <td> <%= i.email %> </p> </td>
-  </tr>
-  <% end %>
-</table>
-
-<h3>Ranking:</h3>
-
-<table class="table">
-  <th>Lugar</th>
-  <th>Hora Termino de Actividad</th>
-  <th>Usuarios</th>
-  <%  @ranking.each.with_index(1) do |val, i| %>
-  <tr>
-    <td> <%= i %></td>
-    <td> <%= time_ago_in_words(val.created_at) %> </p> </td>
-    <td> <%= val.email %> </p> </td>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <th>Actividad</th>
+      <th>Usuarios</th>
+      <%  @users_completed.each do |i| %>
+      <tr>
+        <td> <%= i.nombre %> </p> </td>
+        <td> <%= i.email %> </p> </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<div class="col">
+  <h3>Ranking:</h3>
+  <table class="table">
+    <th>Lugar</th>
+    <th>Avatar</th>
+    <th>Hora Termino de Actividad</th>
+    <th>Usuarios</th>
+    <%  @ranking.each.with_index(1) do |val, i| %>
+    <tr>
+      <td> <%= i %></td>
+      <td> <%= time_ago_in_words(val.created_at) %> </p> </td>
+      <td> <%= image_tag val.avatar %></td>
+      <td> <%= val.email %> </p> </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+</div>
 
 <%= link_to 'Back', tareas_path %>
