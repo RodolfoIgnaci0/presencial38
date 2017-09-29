@@ -20,7 +20,7 @@ class AccionsController < ApplicationController
   def destroy
     tarea = Tarea.find(params[:tarea_id])
     asociacion = tarea.accions.find(params[:id])
-    tarea.action.delete(asociacion)
+    tarea.accions.delete(asociacion)
     redirect_to root_path
   end
 end
