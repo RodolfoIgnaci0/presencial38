@@ -2,6 +2,7 @@
 
 <div class="col">
   <p>bienvenido: <%= current_user.email %> </p>
+  <h3>Tareas completadas</h3>
   <div class="row">
     <% @intento.each do |tarea| %>
     <div class="col">
@@ -9,12 +10,32 @@
         <%= link_to (image_tag tarea.photo),tarea_path(tarea)%>
         <div class="body">
           <h3> <%= tarea.nombre %> </h3>
-          <p> <%= tarea.descripcion %> </p>
-          <p> <%= tarea.hecho == false ? 'Incompleto' : 'Completo' %> </p>
-        
+          <span class="btn btn-success"> <%= (tarea.hecho == false ? 'Incompleto' : 'Finalizado') %> </span>
+          <%= link_to "Desmarcar", tarea_accion_path(tarea_id: tarea.id, id: @intento), method: :delete , class:'btn btn-warning' %>
         </div>
       </div>
     </div>
     <% end %>
   </div>
+</div>
+
+
+<br>
+<hr>
+
+<h3>Todas las tareas disponibles</h3>
+<div class="col">
+  <div class="row">
+<% @all.each do |tarea2| %>
+<div class="col">
+  <div class="card">
+    <%= link_to (image_tag tarea2.photo),tarea_path(tarea2)%>
+    <div class="body">
+      <h3> <%= tarea2.nombre %> </h3>
+      <p class="btn btn-warning"> <%= link_to "Completar", tarea_accions_path(tarea2), method: :post %> </p>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
 </div>

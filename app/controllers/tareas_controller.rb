@@ -17,17 +17,12 @@ class TareasController < ApplicationController
   def index
     # muestra todas las tareas del usuario actual conectado
     # @tareas = Tarea.joins(accions: :user).where("users.id = ?", current_user.id)
+    @all = Tarea.all
     @intento = User.joins(:tareas, :accions)
-                   .select('tareas.id, tareas.nombre, tareas.descripcion, tareas.photo, accions.hecho')
+                   .select('tareas.id, tareas.nombre, tareas.descripcion, tareas.photo, accions.tarea_id, accions.hecho')
                    .distinct.where("users.id = ?", current_user.id)
   end
 
-  def update
-    @task = Tarea.find(params[:id])
-    @task_completed = Accion.joins(:tareas, :users).where('current_user = ? and tareas.id = ?', @user.id, @tarea.id).update(hecho: true)
-    @task_incompleted = Accion.joins(:tareas, :users).where('current_user = ? and tareas.id = ?', @user.id, @tarea.id).update(hecho: false)
-    # Accion.where('user_id = 6 and tarea_id = 32').update(hecho:true) -> funcional en rails console
-  end
 
   private
    def find_tarea
@@ -35,7 +30,7 @@ class TareasController < ApplicationController
    end
    def listaTareas
      # lista total de tareas
-     @listaTotal = Accion.where('user_id = ?', current_user.id).count
+     @listaTotal = Tarea.count
      # lista tareas completas
      @listaCompletos = Accion.where(user_id: current_user.id, hecho: true).count
    end

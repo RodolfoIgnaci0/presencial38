@@ -7,13 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # user = User.create(email: 'correo1@correo.com', password: 123456)
-user = User.find(4)
+
+Tarea.destroy_all
 9.times do |i|
-  ele = Tarea.new(
-                  nombre: Faker::Food.dish,
-                  descripcion: Faker::Overwatch.quote,
-                  photo: "http://lorempixel.com/250/250/city/#{i + 1}/"
-                  )
-  ele.users << user
-  ele.save
+  Tarea.create(
+                nombre: Faker::Food.dish,
+                descripcion: Faker::Overwatch.quote,
+                photo: "http://lorempixel.com/250/250/city/#{i + 1}/"
+                )
 end
